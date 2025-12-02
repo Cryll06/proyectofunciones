@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Mis Reservas</h2>
+<table class="table">
+    <thead><tr><th>Recurso</th><th>Inicio</th><th>Fin</th></tr></thead>
+    <tbody>
+        {% for reserva in reservas %}
+        <tr>
+            <td>{{ reserva.recurso.nombre }}</td>
+            <td>{{ reserva.inicio }}</td>
+            <td>{{ reserva.fin }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="3">No tienes reservas.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
