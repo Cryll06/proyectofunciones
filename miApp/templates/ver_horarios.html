@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="text-center mb-4">
+    <h2>Horarios: {{ recurso.nombre }}</h2>
+    <a href="{% url 'home' %}" class="btn btn-secondary btn-sm mt-2">Volver</a>
+</div>
+
+<div class="row">
+    <div class="col-md-6 mb-4">
+        <div class="card h-100 border-primary">
+            <div class="card-header bg-primary text-white text-center">
+                <h4>☀️ Diurno</h4>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    {% for bloque in bloques_diurnos %}
+                        {% if bloque.vencido %}
+                            <button class="btn btn-secondary" disabled>
+                                {{ bloque.hora_texto }} (Finalizado)
+                            </button>
+                        {% elif bloque.ocupado %}
+                            <button class="btn btn-danger" disabled>
+                                {{ bloque.hora_texto }} (Ocupado)
+                            </button>
+                        {% else %}
+                            <a href="{% url 'confirmar_reserva' recurso.id %}?inicio={{ bloque.inicio|date:'Y-m-d_H-i' }}" 
+                               class="btn btn-outline-primary">
+                                {{ bloque.hora_texto }}
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 mb-4">
+        <div class="card h-100 border-dark">
+            <div class="card-header bg-dark text-white text-center">
+                <h4>🌙 Vespertino</h4>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    {% for bloque in bloques_vespertinos %}
+                        {% if bloque.vencido %}
+                            <button class="btn btn-secondary" disabled>
+                                {{ bloque.hora_texto }} (Finalizado)
+                            </button>
+                        {% elif bloque.ocupado %}
+                            <button class="btn btn-danger" disabled>
+                                {{ bloque.hora_texto }} (Ocupado)
+                            </button>
+                        {% else %}
+                            <a href="{% url 'confirmar_reserva' recurso.id %}?inicio={{ bloque.inicio|date:'Y-m-d_H-i' }}" 
+                               class="btn btn-outline-dark">
+                                {{ bloque.hora_texto }}
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

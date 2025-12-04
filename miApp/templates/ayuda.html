@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-header bg-info text-white">
+                <h4 class="mb-0">Centro de Ayuda</h4>
+            </div>
+            <div class="card-body">
+                <p class="text-muted">Envía tu solicitud y un administrador la gestionará.</p>
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Tu RUT</label>
+                        {{ form.rut }}
+                        {{ form.rut.errors }}
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Motivo</label>
+                        {{ form.motivo }}
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Descripción del problema</label>
+                        {{ form.descripcion }}
+                    </div>
+
+                    <button type="submit" class="btn btn-info text-white w-100">Enviar Solicitud</button>
+                </form>
+            </div>
+        </div>
+        <div class="text-center mt-3">
+            <a href="{% url 'home' %}" class="text-decoration-none">Volver al Inicio</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

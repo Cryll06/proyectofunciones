@@ -6,12 +6,13 @@
         <h3 class="text-primary border-bottom pb-2">Salas de Estudio</h3>
         <div class="list-group mt-3">
             {% for sala in salas %}
-            <a href="{% url 'crear_reserva' sala.id %}" class="list-group-item list-group-item-action">
+            <a href="{% url 'ver_horarios' sala.id %}" class="list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">{{ sala.nombre }}</h5>
-                    <small class="badge bg-success">Disponible 2h</small>
+                    <small class="badge bg-success">Bloques de 2h</small>
                 </div>
                 <p class="mb-1">{{ sala.descripcion }}</p>
+                <small class="text-muted">Ver horarios disponibles &rarr;</small>
             </a>
             {% empty %}
             <p>No hay salas activas.</p>
@@ -23,12 +24,13 @@
         <h3 class="text-info border-bottom pb-2">Computadores</h3>
         <div class="list-group mt-3">
             {% for pc in pcs %}
-            <a href="{% url 'crear_reserva' pc.id %}" class="list-group-item list-group-item-action">
+            <a href="{% url 'ver_horarios' pc.id %}" class="list-group-item list-group-item-action">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">{{ pc.nombre }}</h5>
-                    <small class="badge bg-secondary">Disponible 1h</small>
+                    <small class="badge bg-secondary">Bloques de 1h</small>
                 </div>
                 <p class="mb-1">{{ pc.descripcion }}</p>
+                <small class="text-muted">Ver horarios disponibles &rarr;</small>
             </a>
             {% empty %}
             <p>No hay computadores activos.</p>

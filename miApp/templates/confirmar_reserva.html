@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow">
+            <div class="card-header bg-success text-white">
+                <h4 class="mb-0">Confirmar Reserva</h4>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{ recurso.nombre }}</h5>
+                <p class="card-text">
+                    <strong>Horario:</strong> {{ inicio|date:"H:i" }}
+                    <br>
+                    <small class="text-muted">Introduce tu RUT para finalizar.</small>
+                </p>
+
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label class="form-label">Tu RUT</label>
+                        {{ form.rut_solicitante }} 
+                        {{ form.rut_solicitante.errors }}
+                    </div>
+                    
+                    <button type="submit" class="btn btn-success w-100">Reservar Ahora</button>
+                    <a href="{% url 'ver_horarios' recurso.id %}" class="btn btn-link w-100 mt-2">Volver</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
